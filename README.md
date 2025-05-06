@@ -1,2 +1,0 @@
-# CSharpEducation
-Домашние задания
