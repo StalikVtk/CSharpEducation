@@ -5,76 +5,66 @@ namespace Task2
 {
     class Program
     {
-        public static string[,] historyGame = new string[3, 3]; // массив игрового поля
-
+        public static string[,] stepsPlayers = new string[3, 3];
+        public const string mapFile = "map.txt";
         static void Main(string[] args)
         {
             bool gameOver = false;
-
             string player = "X";
-
             Console.Title = "TicTacToe";
 
-            if (!ReadMap())
+            ReadMap();
+            InstallationMapGame();
+            
+            Console.WriteLine("\nПриветствуем Вас в нашей игре Крестики Нолики!");
+            Console.WriteLine("Введите номер ячейки игрового поля. Число от 1 до 9");
+            int savePositionX = 0;
+            while (!gameOver)
             {
-                Console.WriteLine("Файл игрового поля не найден! (map.txt)");
-            }
-            else
-            {
-                InstallationHistoryGame();
+                int savePositionY = Console.CursorTop + 1;
 
-                Console.WriteLine("\nПриветствуем Вас в нашей игре Крестики Нолики!");
-                Console.WriteLine("Введите номер ячейки игрового поля. Число от 1 до 9");
-
-                int savePositionX = 0; // Сохранение позиции курсора "X"
-                while (!gameOver)
+                Console.Write($"Ваш ход '{player}': ");
+                try
                 {
-                    int savePositionY = Console.CursorTop + 1;   // Сохранение позиции курсора "Y" с переносом на следующую строку, для истории
-
-                    Console.Write($"Ваш ход '{player}': ");
-                    try
+                    int inputPlayer = Convert.ToInt32(Console.ReadLine());
+                    if (inputPlayer < 0 || inputPlayer > 9)
                     {
-                        int inputPlayer = Convert.ToInt32(Console.ReadLine());
-                        if (inputPlayer < 0 || inputPlayer > 9)
-                        {
-                            Console.Write("Введите число от 1 до 9! ");
-                            continue;
-                        }
-                        else if (InsertMap(inputPlayer, player)) // Записываем в массив ход игрока
-                        {
-                            if (gameOver = CheckGame())
-                            {
-                                Console.Clear();
-                                Console.Write("Игра закончена! Результат ничья!");
-                            }
-                            else
-                            {
-                                if (WinGame())
-                                {
-                                    gameOver = true;
-                                    Console.Clear();
-                                    Console.WriteLine($"Победил игрок {player}");
-                                    break;
-                                }
-                                Console.SetCursorPosition(savePositionX, savePositionY);
-                                player = (player == "X") ? "O" : "X";
-                            }
-                        }
-                    }
-                    catch
-                    {
-                        Console.Write("Введите числовое значение! ");
+                        Console.Write("Введите число от 1 до 9! ");
                         continue;
                     }
+                    else if (InsertMap(inputPlayer, player))
+                    {
+                        gameOver = CheckGame();
+                        if (gameOver)
+                        {
+                            Console.Clear();
+                            Console.Write("Игра закончена! Результат ничья!");
+                        }
+                        else
+                        {
+                            if (WinGame())
+                            {
+                                gameOver = true;
+                                Console.Clear();
+                                Console.WriteLine($"Победил игрок {player}");
+                                break;
+                            }
+                            Console.SetCursorPosition(savePositionX, savePositionY);
+                            player = (player == "X") ? "O" : "X";
+                        }
+                    }
                 }
-                Console.Write("Для выхода нажмите 'Enter'");
-                Console.ReadKey();
+                catch
+                {
+                    Console.Write("Введите числовое значение! ");
+                    continue;
+                }
             }
-        }
-
-        public static bool ReadMap() // Выводим игровое поле из файла
+            Console.Write("Для выхода нажмите 'Enter'");
+            Console.ReadKey();
+}
+        public static void ReadMap()
         {
-            string mapFile = "map.txt";
             try
             {
                 StreamReader sr = new StreamReader(mapFile);
@@ -83,35 +73,32 @@ namespace Task2
                 {
                     Console.WriteLine(map);
                 }
-                return true;
             }
-            catch
+            catch (Exception e)
             {
-                return false;
+                Console.WriteLine(e);
+                Environment.Exit(0);
             }
         }
-
-        public static void InstallationHistoryGame() // Инициализируем массив для хода игрока
+        public static void InstallationMapGame()
         {
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    historyGame[i, j] = " ";
+                    stepsPlayers[i, j] = " ";
                 }
             }
         }
-
-        public static bool InsertMap(int _inputPlayer, string _player) // вставка символа игрока на игровое поле
+        public static bool InsertMap(int _inputPlayer, string _player)
         {
-            int positionX; // позиция курсора по X
+            int positionX;
+            int positionY;
 
-            int positionY; // позиция курсора по Y
-
-            int i = 0; // позиция в массиве
+            int i = 0;
             int j = 0;
 
-            switch (_inputPlayer) // определение координат для вставки символа игрока
+            switch (_inputPlayer)
             {
                 case 1:
                     positionX = 2;
@@ -174,70 +161,61 @@ namespace Task2
             else
             {
                 return false;
-
             }
         }
-
-        public static bool InsertGame(int i, int j, string input) // Записываем в массив ход игрока
+        public static bool InsertGame(int i, int j, string input)
         {
-            if (historyGame[i, j] != " ")
+            if (stepsPlayers[i, j] != " ")
             {
                 Console.Write("Ячейка уже занята! ");
                 return false;
             }
             else
             {
-                historyGame[i, j] = input;
+                stepsPlayers[i, j] = input;
                 return true;
             }
         }
-
-        private static bool CheckGame() // смотрим использовали ли игроки все свои ходы
+        private static bool CheckGame()
         {
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (historyGame[i, j] == " ")
+                    if (stepsPlayers[i, j] == " " || WinGame())
                     {
                         return false;
                     }
                 }
             }
-            return true;
+            return true; 
         }
-
-        public static bool WinGame() // Проверяем кто победил
+        public static bool WinGame()
         {
-            for (int i = 0; i < 3; i++) // строки
+            for (int i = 0; i < 3; i++)
             {
-                if (historyGame[i, 0] != " " && historyGame[i, 0] == historyGame[i, 1] && historyGame[i, 1] == historyGame[i, 2])
+                if (stepsPlayers[i, 0] != " " && stepsPlayers[i, 0] == stepsPlayers[i, 1] && stepsPlayers[i, 1] == stepsPlayers[i, 2])
                 {
                     return true;
                 }
             }
-
-            for (int j = 0; j < 3; j++) // столбцы
+            for (int j = 0; j < 3; j++)
             {
-                if (historyGame[0, j] != " " && historyGame[0, j] == historyGame[1, j] && historyGame[1, j] == historyGame[2, j])
+                if (stepsPlayers[0, j] != " " && stepsPlayers[0, j] == stepsPlayers[1, j] && stepsPlayers[1, j] == stepsPlayers[2, j])
                 {
                     return true;
                 }
             }
-
-            if (historyGame[0, 0] != " " && historyGame[0, 0] == historyGame[1, 1] && historyGame[1, 1] == historyGame[2, 2])
+            if (stepsPlayers[0, 0] != " " && stepsPlayers[0, 0] == stepsPlayers[1, 1] && stepsPlayers[1, 1] == stepsPlayers[2, 2])
             {
                 return true;
             }
-
-            if (historyGame[2, 0] != " " && historyGame[2, 0] == historyGame[1, 1] && historyGame[1, 1] == historyGame[0, 2])
+            if (stepsPlayers[2, 0] != " " && stepsPlayers[2, 0] == stepsPlayers[1, 1] && stepsPlayers[1, 1] == stepsPlayers[0, 2])
             {
-
                 return true;
             }
             return false;
         }
-
     }
 }
 
