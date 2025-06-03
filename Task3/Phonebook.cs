@@ -28,60 +28,36 @@ namespace Task3
             Phonebook.listAbonent.Add(new Abonent(name, numberPhone));
             WriteToInPhonebook();
         }
-        internal static void DeleteAbonent()
+        internal static void DeleteAbonent(int id)
         {
-            int id = Convert.ToInt32(Console.ReadLine()) - 1;
             Phonebook.listAbonent.RemoveAt(id);
             WriteToInPhonebook();
         }
-        internal static void UpdateAbonent()
+        internal static void UpdateAbonent(string updateString, int id, int flag)
         {
-            int id = Convert.ToInt32(Console.ReadLine()) - 1;
-            Console.Write("1. Имя\n2. Номер телефона\nУкажите параметр для обновления: ");
-            int numberMenu = Convert.ToInt32(Console.ReadLine());
-            switch (numberMenu)
+            if (flag == 1)
             {
-                case 1:
-                    Console.Write("Введите новое имя: ");
-                    Phonebook.listAbonent[id].name = Console.ReadLine();
-                    break;
-                case 2:
-                    Console.Write("Укажите новый номер телефона: ");
-                    Phonebook.listAbonent[id].numberPhone = Console.ReadLine();
-                    break;
+                Phonebook.listAbonent[id].name = updateString;
+            }
+            else if (flag ==2)
+            {
+                Phonebook.listAbonent[id].numberPhone = updateString;
             }
             WriteToInPhonebook();
         }
-        internal static void SearchAbonent()
+        internal static void SearchAbonent(string searchString, int flag)
         {
             string foundUser = "Данных нет";
-            string strSearch;
-            Console.Write("1. Имя\n2. Номер телефона\nУкажите параметр для поиска: ");
-            int numberMenu = Convert.ToInt32(Console.ReadLine());
-            switch (numberMenu)
+            foreach (Abonent list in Phonebook.listAbonent)
             {
-                case 1:
-                    Console.Write("Введите имя: ");
-                    strSearch = Console.ReadLine();
-                    foreach (Abonent list in Phonebook.listAbonent)
-                    {
-                        if (list.name == strSearch)
-                        {
-                            foundUser = list.numberPhone;
-                        }
-                    }
-                    break;
-                case 2:
-                    Console.Write("Укажите номер телефона: ");
-                    strSearch = Console.ReadLine();
-                    foreach (Abonent list in Phonebook.listAbonent)
-                    {
-                        if (list.numberPhone == strSearch)
-                        {
-                            foundUser = list.name;
-                        }
-                    }
-                    break;
+                if ((flag == 1) && (list.name == searchString))
+                {
+                    foundUser = list.numberPhone;
+                }
+                else if ((flag == 2) && (list.numberPhone == searchString))
+                {
+                    foundUser = list.name;
+                }
             }
             Console.Write(foundUser);
             Console.ReadKey();
@@ -112,7 +88,6 @@ namespace Task3
         }
         internal static void PrintAbonent()
         {
-            Console.WriteLine("Список абонентов: \n");
             ReadPhoneBook();
             int id = 1;
             if (Phonebook.listAbonent.Count > 0)
