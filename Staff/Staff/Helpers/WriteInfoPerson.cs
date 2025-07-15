@@ -3,7 +3,7 @@
 namespace Staff
 {
   /// <summary>
-  /// Вывод ифнормации о сотруднике
+  /// Вывод ифнормации о сотруднике.
   /// </summary>
   internal class WriteInfoPerson
   {
@@ -16,29 +16,29 @@ namespace Staff
     {
       string [] FullName = person.Name.Split(' ');
       Console.Clear();
-      Console.WriteLine("+-------+-------------+-------------+---------------+-------------+----------+----------+");
+      Console.WriteLine("+-------------+-------------+-------------+--------------+-------------+----------+-----------+");
 
       Console.WriteLine(
-        $"|{FieldPerson.Табель} " +
-        $"|{FieldPerson.Фамилия}      " +
-        $"|{FieldPerson.Имя}          " +
-        $"|{FieldPerson.Отчество}       " +
-        $"|{FieldPerson.ДатаРождения} " +
-        $"|{FieldPerson.Оклад}     " +
-        $"|{FieldPerson.Занятость} |");
+        $"|{FieldPerson.PersonNumber} " +
+        $"|{FieldPerson.Surname}      " +
+        $"|{FieldPerson.Name}         " +
+        $"|{FieldPerson.Patronymic}    " +
+        $"|{FieldPerson.BirthDate}    " +
+        $"|{FieldPerson.Salary}    " +
+        $"|{FieldPerson.Employment} |");
 
-      Console.WriteLine("+-------+-------------+-------------+---------------+-------------+----------+----------+");
+      Console.WriteLine("+-------------+-------------+-------------+--------------+-------------+----------+-----------+");
 
       Console.WriteLine("|" +
-        person.Id.ToString().PadRight(7) + "|" +
+        person.Id.ToString().PadRight(13) + "|" +
         FullName[0].ToString().PadRight(13) + "|" +
         FullName[1].ToString().PadRight(13) + "|" +
-        FullName[2].ToString().PadRight(15) + "|" + 
+        FullName[2].ToString().PadRight(14) + "|" + 
         person.BirthDay.ToString("dd.MM.yyyy").PadRight(13) + "|" +
         person.BaseSalary.ToString().PadRight(10) + "|" +
-        employment.ToString().PadRight(10) + "|");
+        employment.ToString().PadRight(11) + "|");
 
-      Console.WriteLine("+-------+-------------+-------------+---------------+-------------+----------+----------+");
+      Console.WriteLine("+-------------+-------------+-------------+--------------+-------------+----------+-----------+");
     }
   }
 }

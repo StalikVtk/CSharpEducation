@@ -1,5 +1,4 @@
-﻿
-namespace Staff
+﻿namespace Staff
 {
   /// <summary>
   /// Поля отображения информации о сотруднике.
@@ -7,12 +6,39 @@ namespace Staff
   /// </summary>
   public enum FieldPerson
   { 
-    Табель,
-    Фамилия,
-    Имя,
-    Отчество,
-    ДатаРождения,
-    Оклад,
-    Занятость
+    /// <summary>
+    /// Табельный номер.
+    /// </summary>
+    PersonNumber,
+
+    /// <summary>
+    /// Фамилия.
+    /// </summary>
+    Surname,
+
+    /// <summary>
+    /// Имя.
+    /// </summary>
+    Name,
+
+    /// <summary>
+    /// Отчество.
+    /// </summary>
+    Patronymic,
+
+    /// <summary>
+    /// Дата рождения.
+    /// </summary>
+    BirthDate,
+
+    /// <summary>
+    /// Зарплата.
+    /// </summary>
+    Salary,
+
+    /// <summary>
+    /// Занятость.
+    /// </summary>
+    Employment
   }
 }

@@ -5,17 +5,17 @@ using System.Reflection;
 namespace Staff
 {
   /// <summary>
-  /// Логгер
+  /// Логгер.
   /// </summary>
   internal class Logger : ILogger
   {
     /// <summary>
-    /// Наименование метода, который вызвал лог
+    /// Наименование метода, который вызвал лог.
     /// </summary>
     private readonly string methodName;
 
     /// <summary>
-    /// Путь к файлу для записи логов
+    /// Путь к файлу для записи логов.
     /// </summary>
     private readonly string filePath;
 
@@ -25,7 +25,7 @@ namespace Staff
     private readonly StreamWriter writer;
 
     /// <summary>
-    /// Инициализирует новый экземпляр класса Logger для записи логов в файл
+    /// Инициализирует новый экземпляр класса Logger для записи логов в файл.
     /// </summary>
     /// <param name="methodName">Информация о вызывающем методе.</param>
     /// <param name="filePath">Путь к файлу лога. По умолчанию "log.txt" в рабочей директории.</param>
@@ -48,10 +48,10 @@ namespace Staff
     }
 
     /// <summary>
-    /// Записывает сообещение в лог-файл
+    /// Записывает сообещение в лог-файл.
     /// </summary>
-    /// <param name="messsage">Текст сообщения</param>
-    /// <param name="level">Уровень важности сообщения</param>
+    /// <param name="messsage">Текст сообщения.</param>
+    /// <param name="level">Уровень важности сообщения.</param>
     public void WrieLogFile(string messsage, LogLevel level)
     {
       string messageLog = $"| {DateTime.Now} | {level} | {methodName} | {messsage} |";
@@ -61,14 +61,14 @@ namespace Staff
     }
 
     /// <summary>
-    /// Записывает сообещение в лог-файл
+    /// Записывает сообещение в лог-файл.
     /// </summary>
-    /// <typeparam name="T">Тип нового значения</typeparam>
-    /// <typeparam name="K">Тип старого значения</typeparam>
-    /// <param name="messsage">Текст сообщения</param>
-    /// <param name="level">Уровень важности сообщения</param>
-    /// <param name="newValue">Новое значение</param>
-    /// <param name="oldValue">Старое значение</param>
+    /// <typeparam name="T">Тип нового значения.</typeparam>
+    /// <typeparam name="K">Тип старого значения.</typeparam>
+    /// <param name="messsage">Текст сообщения.</param>
+    /// <param name="level">Уровень важности сообщения.</param>
+    /// <param name="newValue">Новое значение.</param>
+    /// <param name="oldValue">Старое значение.</param>
     public void WrieLogFile<T, K>(string messsage, LogLevel level, T newValue, K oldValue)
     {
       string messageLog = $"| {DateTime.Now} | {level} | {methodName} | {messsage} | OLD: {newValue} | NEW: {oldValue} |";

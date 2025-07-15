@@ -104,7 +104,7 @@ namespace Staff
     #region Методы меню
 
     /// <summary>
-    /// Отображает главное меню системы
+    /// Отображает главное меню системы.
     /// </summary>
     public static void ShowItemUserMenu()
     {
@@ -128,7 +128,7 @@ namespace Staff
     }
 
     /// <summary>
-    /// Добавляет нового сотрудника в систему
+    /// Добавляет нового сотрудника в систему.
     /// </summary>
     public static void EmpoyeeAdd()
     {
@@ -159,7 +159,7 @@ namespace Staff
     }
 
     /// <summary>
-    /// Выводит информацию о сотруднике
+    /// Выводит информацию о сотруднике.
     /// </summary>
     public static void ShowEmployeeInfo()
     {
@@ -182,7 +182,7 @@ namespace Staff
     }
 
     /// <summary>
-    /// Обновляет данные сотрудника
+    /// Обновляет данные сотрудника.
     /// </summary>
     public static void EmployeeUpdate()
     {
@@ -240,7 +240,7 @@ namespace Staff
     }
 
     /// <summary>
-    /// Удаляет сотрудника из системы
+    /// Удаляет сотрудника из системы.
     /// </summary>
     public static void EmployeeDelete()
     {
@@ -253,7 +253,7 @@ namespace Staff
     }
 
     /// <summary>
-    /// Расчитывает зарплату сотрудника
+    /// Расчитывает зарплату сотрудника.
     /// </summary>
     public static void CalculationEmployeeSalary()
     {
@@ -268,5 +268,6 @@ namespace Staff
     }
 
     #endregion
+
   }
 }

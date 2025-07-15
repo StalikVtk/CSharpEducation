@@ -6,7 +6,7 @@ namespace Staff
   /// <summary>
   /// Менеджер для управления списком сотрудников в системе.
   /// </summary>
-  /// <typeparam name="T">Тип сотрудника (FullTime, PartTime)</typeparam>
+  /// <typeparam name="T">Тип сотрудника (FullTime, PartTime).</typeparam>
   internal class EmployeeManager<T>: IEmployeeManager<T> where T : Employee
   {
     /// <summary>

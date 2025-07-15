@@ -28,7 +28,7 @@ namespace Staff
     /// <summary>
     /// Получает из консоли полное ФИО сотрудника. 
     /// </summary>
-    /// <returns>Полное имя в формате 'Фамилия Имя Отчество'</returns>
+    /// <returns>Полное имя в формате 'Фамилия Имя Отчество'.</returns>
     public static string GetFullNamePerson()
     {
       while(true)
@@ -53,9 +53,9 @@ namespace Staff
     }
 
     /// <summary>
-    /// Получает из консоли дату рождения сотрудника
+    /// Получает из консоли дату рождения сотрудника.
     /// </summary>
-    /// <returns>Дата рождения в формате 'dd.MM.yyyy'</returns>
+    /// <returns>Дата рождения в формате 'dd.MM.yyyy'.</returns>
     public static DateTime GetBirthDatePerson()
     {
       while (true)
@@ -73,10 +73,10 @@ namespace Staff
     }
 
     /// <summary>
-    /// Получает из консоли размер ставки сотрудника
+    /// Получает из консоли размер ставки сотрудника.
     /// </summary>
-    /// <param name="employmentType">Тип занятости (1 - Полная, 2 - Частичная)</param>
-    /// <returns>Размер ставки</returns>
+    /// <param name="employmentType">Тип занятости (1 - Полная, 2 - Частичная).</param>
+    /// <returns>Размер ставки.</returns>
     public static decimal GetSalaryPerson(int employmentType)
     {
       string WriteMessage = employmentType == 1? "Введите оклад: " : "Введите часовую ставку: ";

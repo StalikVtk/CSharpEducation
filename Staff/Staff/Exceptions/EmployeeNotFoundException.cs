@@ -6,11 +6,12 @@
   internal class EmployeeNotFoundException : EmployeeException
   {
     /// <summary>
-    /// Инициализирует новый экземпляр исключения с сообщением об ошибке.
+    /// Конструктор
     /// Сообщение: Сотрудник с табельным __, не найден!
     /// </summary>
     /// <param name="personId">Уникальный индификатор сотрудника (Табельный номер).</param>
-    public EmployeeNotFoundException(int? personId) : base(personId, $"Сотрудник с табельным {personId}, не найден!") { }
-
+    public EmployeeNotFoundException(int? personId) 
+      : base(personId, $"Сотрудник с табельным {personId}, не найден!") 
+    { }
   }
 }

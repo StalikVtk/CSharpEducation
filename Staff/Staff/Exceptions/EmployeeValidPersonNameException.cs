@@ -7,10 +7,13 @@ namespace Staff.EmployeeException
   internal class EmployeeValidPersonNameException : EmployeeException
   {
     /// <summary>
-    /// Инициализирует новый экземпляр исключения с сообщением об ошибке если: ФИО пустое, ФИО введено не полностью.
+    /// Конструктор
     /// </summary>
     /// <param name="personId">Уникальный индификатор сотрудника (Табельный номер). Принимает Null.</param>
-    public EmployeeValidPersonNameException(int? personId, string message) : base(personId, message)
+    /// <remarks>
+    /// Исключение с сообщением об ошибке если: ФИО пустое, ФИО введено не полностью.
+    /// </remarks>
+    public EmployeeValidPersonNameException(int? personId, string message) : base(personId, message) 
     { }
   }
 }
